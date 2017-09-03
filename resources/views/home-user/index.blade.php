@@ -9,7 +9,7 @@
         @yield('title')
     </title>
 
-    <link rel="stylesheet" href="public/bootstrap/css/bootstrap-theme.css" type="text/css">
+    <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap-theme.css') }}" type="text/css">
     <link rel="stylesheet" href="public/bootstrap/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="public/bootstrap/css/bootstrap-theme.min.css" type="text/css">
     <link rel="stylesheet" href="public/bootstrap/css/style.css" type="text/css">
