@@ -9,16 +9,11 @@
         @yield('title')
     </title>
 
-    <link rel="stylesheet" href="public/bootstrap/css/bootstrap-theme.css" type="text/css">
-    <link rel="stylesheet" href="public/bootstrap/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="public/bootstrap/css/bootstrap-theme.min.css" type="text/css">
-    <link rel="stylesheet" href="public/bootstrap/css/style.css" type="text/css">
+    <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap-theme.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}" type="text/css">
+    {{--<link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap-theme.min.css') }}" type="text/css">--}}
+    <link rel="stylesheet" href="{{ asset('bootstrap/css/style.css') }}" type="text/css">
 
-    <!-- javascript and jquery external -->
-    <script src="public/bootstrap/js/bootstrap.js" type="text/javascript"></script>
-    <script src="public/bootstrap/js/jquery.min.js" type="text/javascript"></script>
-    <script src="public/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="public/bootstrap/js/jquery-1.11.2.min.js" type="text/javascript"></script>
     <style type="text/css" media="screen">
         #menu a:hover {
             background-color: #253C65;
@@ -58,12 +53,12 @@
         <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">
             <div class="row" style="">
                 <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1" id="icon-header">
-                    <a href="{{ url('/')}}">
-                        <img src="public/img/icon-soict.png" class="img-responsive" alt="Image">
+                    <a href="{{ url('/') }}">
+                        <img src="{{ url('img/icon-soict.png') }}" class="img-responsive" alt="Image">
                     </a>
                 </div>
                 <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 hidden-xs hidden-sm hidden-md" id="name-header">
-                    <a href="{{ url('/')}}">
+                    <a href="{{ url('/') }}">
                     <span id="name-school">
                     VIỆN CÔNG NGHỆ THÔNG TIN VÀ TRUYỀN THÔNG
                     </span></br>
@@ -149,7 +144,7 @@
                         <div class="carousel-inner" role="listbox">
 
                             <div class="item active">
-                                <img src="public/img/slide1.jpg"
+                                <img src="{{ url('img/slide1.jpg') }}"
                                      alt="Thành lập viện công nghệ thông tin và truyền thông"
                                      class="img-fluid" style="max-height: 400px;width: 100%">
 
@@ -158,7 +153,7 @@
                                 </div>
                             </div>
                             <div class="item">
-                                <img src="public/img/anh9.jpg"
+                                <img src="{{ url('img/anh9.jpg') }}"
                                      alt="Sinh viên Bách Khoa"
                                      class="img-fluid" style="max-height: 400px;width: 100%">
                                 <div class="carousel-caption">
@@ -187,7 +182,7 @@
                                 ?>
                                 @if($j==0)
                                     <div class="item active">
-                                        <img src="public/{{$im->url}}"
+                                        <img src="{{ url($im->url) }}"
                                              alt="{{$im->name_display}}"
                                              class="img-fluid" style="max-height: 400px;width: 100%">
 
@@ -197,7 +192,7 @@
                                     </div>
                                 @else
                                     <div class="item">
-                                        <img src="public/{{$im->url}}"
+                                        <img src="{{ url($im->url) }}"
                                              alt="{{$im->name_display}}"
                                              class="img-fluid" style="max-height: 400px;width: 100%">
 
@@ -260,6 +255,11 @@
 </div>
 </div>
 </body>
+<!-- javascript and jquery external -->
+<script src="{{ asset('bootstrap/js/jquery.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('bootstrap/js/bootstrap.js') }}" type="text/javascript"></script>
+{{--<script src="{{ asset('bootstrap/js/bootstrap.min.js') }}" type="text/javascript"></script>--}}
+{{--<script src="{{ asset('bootstrap/js/jquery-1.11.2.min.js') }}" type="text/javascript"></script>--}}
 <script>
     $(document).ready(function () {
         // Show or hide the sticky footer button

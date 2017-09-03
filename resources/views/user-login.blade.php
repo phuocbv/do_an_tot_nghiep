@@ -7,16 +7,16 @@
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
     <title>Đăng nhập</title>
 
-    <link rel="stylesheet" href="public/bootstrap/css/bootstrap-theme.css" type="text/css">
-    <link rel="stylesheet" href="public/bootstrap/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="public/bootstrap/css/bootstrap-theme.min.css" type="text/css">
-    <link rel="stylesheet" href="public/bootstrap/css/style.css" type="text/css">
+    <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap-theme.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}" type="text/css">
+    {{--<link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap-theme.min.css') }}" type="text/css">--}}
+    <link rel="stylesheet" href="{{ asset('bootstrap/css/style.css') }}" type="text/css">
 
-    <!-- jvascrip and jquery external -->
-    <script src="../bootstrap/js/bootstrap.js" type="text/javascript"></script>
-    <script src="../bootstrap/js/jquery.min.js" type="text/javascript"></script>
-    <script src="../bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="../bootstrap/js/jquery-1.11.2.min.js" type="text/javascript"></script>
+    {{--<!-- jvascrip and jquery external -->--}}
+    {{--<script src="../bootstrap/js/bootstrap.js" type="text/javascript"></script>--}}
+    {{--<script src="../bootstrap/js/jquery.min.js" type="text/javascript"></script>--}}
+    {{--<script src="../bootstrap/js/bootstrap.min.js" type="text/javascript"></script>--}}
+    {{--<script src="../bootstrap/js/jquery-1.11.2.min.js" type="text/javascript"></script>--}}
     <style type="text/css" media="screen">
         .login {
             max-width: 450px;
@@ -94,4 +94,8 @@
     </div>
 </div>
 </body>
+<script src="{{ asset('bootstrap/js/jquery.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('bootstrap/js/bootstrap.js') }}" type="text/javascript"></script>
+{{--<script src="{{ asset('bootstrap/js/bootstrap.min.js') }}" type="text/javascript"></script>--}}
+{{--<script src="{{ asset('bootstrap/js/jquery-1.11.2.min.js') }}" type="text/javascript"></script>--}}
 </html>
