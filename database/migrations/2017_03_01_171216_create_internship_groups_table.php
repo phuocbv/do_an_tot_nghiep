@@ -2,8 +2,9 @@
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\Schema;
 
-class LectureInternshipCourse extends Migration
+class CreateInternshipGroupsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +13,12 @@ class LectureInternshipCourse extends Migration
      */
     public function up()
     {
-        Schema::create('lecture_internship_course', function ($table) {
+        Schema::create('internship_groups', function ($table) {
             $table->increments('id');
+            $table->string('student_id');
+            $table->string('company_id');
             $table->string('lecture_id');
             $table->string('internship_course_id');
-            $table->string('assignment_date');
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class LectureInternshipCourse extends Migration
      */
     public function down()
     {
-        Schema::drop('lecture_internship_course');
+        Schema::dropIfExists('internship_groups');
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Auth;
 
 class Admin
 {
@@ -15,7 +16,12 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
-        if (($request->session()->has('adminLogin')) == false) {
+     /*   if (($request->session()->has('adminLogin')) == false) {
+            return redirect('login');
+        } else {
+            return $next($request);
+        }*/
+        if (Auth::guest() || Auth::user()->type != 'admin') {
             return redirect('login');
         } else {
             return $next($request);

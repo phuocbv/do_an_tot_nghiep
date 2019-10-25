@@ -2,8 +2,9 @@
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\Schema;
 
-class Company extends Migration
+class CreateLecturesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,16 +13,13 @@ class Company extends Migration
      */
     public function up()
     {
-        Schema::create('company', function ($table) {
+        Schema::create('lectures', function ($table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('address');
-            $table->string('logo');
-            $table->string('birthday');
-            $table->string('description');
-            $table->string('require_skill');
-            $table->string('hr_mail');
-            $table->string('hr_phone');
+            $table->string('name')->nullable();
+            $table->string('birthday')->nullable();
+            $table->string('qualification')->nullable();
+            $table->string('address')->nullable();
+            $table->string('phone')->nullable();
             $table->string('user_id');
             $table->timestamps();
         });
@@ -34,6 +32,6 @@ class Company extends Migration
      */
     public function down()
     {
-        Schema::drop('company');
+        Schema::dropIfExists('lectures');
     }
 }

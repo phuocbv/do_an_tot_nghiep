@@ -281,3 +281,7 @@ Route::get('chia', function () {
 //    $myUser->type = 'company';
 //    $myUser->save();
 //});
+
+Route::auth();
+
+//Route::get('/home', 'HomeController@index');

@@ -11,6 +11,7 @@ use App\Student;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Response;
 
@@ -104,7 +105,9 @@ class HomeUserController extends Controller
         */
         $notify = News::getNotify();
         $adminSession = new  SessionController();
-        $admin = Admin::getAdmin($adminSession->getAdminSession());
+        //$admin = Admin::getAdmin($adminSession->getAdminSession());
+        $admin = Auth::user();
+        //dd($admin);
         $type = 'admin';
 
         return view('home-user.users-home')->with([
@@ -149,6 +152,7 @@ class HomeUserController extends Controller
          * get uniNotify
          * get comNotify
          */
+        //dd(Auth::user());
         $notify = News::getNotify();
         $session = new SessionController();
 

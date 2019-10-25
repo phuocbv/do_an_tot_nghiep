@@ -2,8 +2,9 @@
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\Schema;
 
-class InternshipGroup extends Migration
+class CreateAdminsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +13,12 @@ class InternshipGroup extends Migration
      */
     public function up()
     {
-        Schema::create('internship_group', function ($table) {
+        Schema::create('admins', function ($table) {
             $table->increments('id');
-            $table->string('student_id');
-            $table->string('company_id');
-            $table->string('lecture_id');
-            $table->string('internship_course_id');
+            $table->string('name')->nullable();
+            $table->string('address')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('user_id');
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class InternshipGroup extends Migration
      */
     public function down()
     {
-        Schema::drop('internship_group');
+        Schema::dropIfExists('admins');
     }
 }

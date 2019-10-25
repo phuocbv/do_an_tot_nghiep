@@ -10,12 +10,17 @@ class LectureInternShipCourse extends Model
 
     public function internshipCourse()
     {
-        return $this->belongsTo('App\InternShipCourse', 'internship_course_id');
+        return $this->belongsTo(InternShipCourse::class, 'internship_course_id');
     }
 
     public function lecture()
     {
-        return $this->belongsTo('App\Lecture', 'lecture_id');
+        return $this->belongsTo(Lecture::class, 'lecture_id');
+    }
+
+    public function lectureReports()
+    {
+        return $this->hasMany(LectureReport::class, 'lecture_in_course_id');
     }
 
 

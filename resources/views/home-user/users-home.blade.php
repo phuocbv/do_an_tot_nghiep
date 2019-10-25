@@ -43,11 +43,11 @@
                         </a>
                     @endforeach
                 @elseif($type=='admin')
-                    @foreach($user as $u)
-                        <a href="user-admin-home?user_id={{bcrypt($u->user_id)}}&type={{'admin'}}">
+                    @if (isset($user))
+                        <a href="user-admin-home?user_id={{bcrypt($user->admin->user_id)}}&type={{'admin'}}">
                             <span class="name-page-profile" style="color: #333333">Thông báo</span>
                         </a>
-                    @endforeach
+                    @endif
                 @endif
             </h3>
         </div>
@@ -81,14 +81,14 @@
                         </span>
                     @endforeach
                 @elseif($type=='admin')
-                    @foreach($user as $u)
+                    @if (isset($user))
                         <span>
-                            <a href="admin-detail-notify?notify_id={{$n->id}}&user_id={{bcrypt($u->user_id)}}&type={{'admin'}}"
+                            <a href="admin-detail-notify?notify_id={{$n->id}}&user_id={{bcrypt($user->admin->user_id)}}&type={{'admin'}}"
                                style="color:#333333;font-weight: bold">
                                 {{$n->title}}
                             </a>
                         </span>
-                    @endforeach
+                    @endif
                 @endif
                 <p class="date">
                     {{date("d/m/Y",strtotime($n->updated_at))}}

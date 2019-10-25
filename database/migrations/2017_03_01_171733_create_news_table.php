@@ -2,8 +2,9 @@
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\Schema;
 
-class News extends Migration
+class CreateNewsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -28,6 +29,6 @@ class News extends Migration
      */
     public function down()
     {
-        Schema::drop('news');
+        Schema::dropIfExists('news');
     }
 }

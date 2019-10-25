@@ -33,14 +33,18 @@ class CompanyInCourseController extends Controller
          * lay danh sach khoa thuc tap trong nam hien tai
          */
         $arrCourse = array();
-        $nowDate = date('Y-m-d');
+        $nowDate = date('Y-m-d');//lay ngay thang hien tai
         $nowMonth = (int)date('m', strtotime($nowDate));
         $year = 0;
+
+        //lấy năm học hiện tại
         if ($nowMonth >= 6 && $nowMonth <= 12) {
             $year = (int)date('Y', strtotime($nowDate));
         } else {
             $year = (int)date('Y', strtotime($nowDate)) - 1;
         }
+
+        //lấy các khóa thực tập của năm học hiện tại
         $inCourse = InternShipCourse::getCourseFollowYear($year);
         return view('manage-register.company-register')->with([
             'companyID' => $companyID,

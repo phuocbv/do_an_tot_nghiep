@@ -13,19 +13,19 @@ class InternShipCourse extends Model
         return $this->hasMany('StudentInternShipCourse', 'internship_course_id');
     }
 
-    public function companyInternShipCourse()
+    public function companyInternShipCourses()
     {
-        return $this->hasMany('CompanyInternShipCourse', 'internship_course_id');
+        return $this->hasMany(CompanyInternShipCourse::class, 'internship_course_id');
     }
 
-    public function lectureInternShipCourse()
+    public function lectureInternShipCourses()
     {
-        return $this->hasMany('LectureInternShipCourse', 'internship_course_id');
+        return $this->hasMany(LectureInternShipCourse::class, 'internship_course_id');
     }
 
-    public function internShipGroup()
+    public function internShipGroups()
     {
-        return $this->hasMany('InternShipGroup', 'internship_course_id');
+        return $this->hasMany(InternShipGroup::class, 'internship_course_id');
     }
 
     public static function allCourse()

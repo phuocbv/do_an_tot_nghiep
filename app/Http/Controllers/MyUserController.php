@@ -88,20 +88,8 @@ class MyUserController extends Controller
      */
     public function addUsers()
     {
-        /*
-       * get newNotify
-       * get uniNotify
-       * get comNotify
-       */
-        $notify = News::getNotify();
-
-        $adminSession = new  SessionController();
-        $admin = Admin::getAdmin($adminSession->getAdminSession());
-        $type = 'admin';
         return view('my-user.add-user')->with([
-            'notify' => $notify,
-            'user' => $admin,
-            'type' => $type
+            'type' => 'admin'
         ]);
     }
 
@@ -117,10 +105,10 @@ class MyUserController extends Controller
       * get uniNotify
       * get comNotify
       */
-        $notify = News::getNotify();
-
-        $adminSession = new  SessionController();
-        $admin = Admin::getAdmin($adminSession->getAdminSession());
+//        $notify = News::getNotify();
+//
+//        $adminSession = new  SessionController();
+//        $admin = Admin::getAdmin($adminSession->getAdminSession());
         $type = 'admin';
         /*
          * get all student
@@ -140,8 +128,8 @@ class MyUserController extends Controller
             'student' => $students,
             'lecture' => $lectures,
             'company' => $company,
-            'notify' => $notify,
-            'user' => $admin,
+//            'notify' => $notify,
+//            'user' => $admin,
             'type' => $type
         ]);
     }

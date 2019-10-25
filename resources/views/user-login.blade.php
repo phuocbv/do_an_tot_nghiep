@@ -77,7 +77,7 @@
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                     <div class="form-group">
-                        <input type="text" name="username" class="form-control input" required="required"
+                        <input type="text" name="email" class="form-control input" required="required"
                                placeholder="Nhập tên đăng nhập">
                         <input type="password" name="password" id="inputPassword" class="form-control input"
                                required="required" placeholder="Nhập mật khẩu">

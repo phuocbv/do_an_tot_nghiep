@@ -10,37 +10,36 @@
     </title>
 
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap-theme.css') }}" type="text/css">
-    <link rel="stylesheet" href="public/bootstrap/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="public/bootstrap/css/bootstrap-theme.min.css" type="text/css">
-    <link rel="stylesheet" href="public/bootstrap/css/style.css" type="text/css">
+        <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}" type="text/css">
+    {{--<link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap-theme.min.css') }}" type="text/css">--}}
+    <link rel="stylesheet" href="{{ asset('bootstrap/css/style.css') }}" type="text/css">
 
     {{--display font. support display vote--}}
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 
 
     <!-- javascript and jquery external -->
-    <script src="public/bootstrap/js/bootstrap.js" type="text/javascript"></script>
-    <script src="public/bootstrap/js/jquery.min.js" type="text/javascript"></script>
-    <script src="public/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="public/bootstrap/js/jquery-1.11.2.min.js" type="text/javascript"></script>
-    <script src="public/bootstrap/validate/jquery-2.0.0.js" type="text/javascript"></script>
-    <script src="public/bootstrap/validate/jquery.validate.js" type="text/javascript"></script>
-    <script src="public/bootstrap/js/script.js" type="text/javascript"></script>
+    <script src="{{ asset('bootstrap/js/jquery.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bootstrap/js/bootstrap.js') }}" type="text/javascript"></script>
+    {{--<script src="public/bootstrap/js/jquery-1.11.2.min.js" type="text/javascript"></script>--}}
+    {{--<script src="public/bootstrap/validate/jquery-2.0.0.js" type="text/javascript"></script>--}}
+    <script src="{{ asset('bootstrap/validate/jquery.validate.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bootstrap/js/script.js') }}" type="text/javascript"></script>
 
     {{--datepicker--}}
-    <link rel="stylesheet" href="public/bootstrap/datetime/datepicker.min.css" type="text/css">
-    <script src="public/bootstrap/datetime/en-gb.js" type="text/javascript"></script>
-    <script src="public/bootstrap/datetime/moment.min.js" type="text/javascript"></script>
-    <script src="public/bootstrap/datetime/bootstrap.min.js" type="text/javascript"></script>
-    <script src="public/bootstrap/datetime/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="{{ asset('bootstrap/datetime/datepicker.min.css') }}" type="text/css">
+    <script src="{{ asset('bootstrap/datetime/moment.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bootstrap/datetime/en-gb.js') }}" type="text/javascript"></script>
+    {{--<script src="{{ asset('bootstrap/datetime/bootstrap.min.js') }}" type="text/javascript"></script>--}}
+    <script src="{{ asset('bootstrap/datetime/bootstrap-datetimepicker.min.js') }}" type="text/javascript"></script>
 
     {{--table-data--}}
-    <link rel="stylesheet" href="public/bootstrap/table-data/dataTables.bootstrap.min.css" type="text/css">
-    <script src="public/bootstrap/table-data/jquery.dataTables.min.js" type="text/javascript"></script>
-    <script src="public/bootstrap/table-data/dataTables.bootstrap.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="{{ asset('bootstrap/table-data/dataTables.bootstrap.min.css') }}" type="text/css">
+    <script src="{{ asset('bootstrap/table-data/jquery.dataTables.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bootstrap/table-data/dataTables.bootstrap.min.js') }}" type="text/javascript"></script>
 
     {{--chart--}}
-    <script src="public/bootstrap/chart/Chart.min.js" type="text/javascript"></script>
+    <script src="{{ asset('bootstrap/chart/Chart.min.js') }}" type="text/javascript"></script>
 
     <style type="text/css" media="screen">
         .user-menu a {
@@ -88,23 +87,26 @@
         <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">
             <div class="row">
                 <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1" id="icon-header">
-                    @if($type=='student')
-                        <a href="student-home">
-                            <img src="public/img/icon-soict.png" class="img-responsive" alt="Image">
-                        </a>
-                    @elseif($type=='lecture')
-                        <a href="lecture-home">
-                            <img src="public/img/icon-soict.png" class="img-responsive" alt="Image">
-                        </a>
-                    @elseif($type=='company')
-                        <a href="company-home">
-                            <img src="public/img/icon-soict.png" class="img-responsive" alt="Image">
-                        </a>
-                    @else
-                        <a href="admin-home">
-                            <img src="public/img/icon-soict.png" class="img-responsive" alt="Image">
-                        </a>
-                    @endif
+                    <a href="home">
+                        <img src="{{ url('img/icon-soict.png') }}" class="img-responsive" alt="Image">
+                    </a>
+                    {{--@if($type=='student')--}}
+                        {{--<a href="student-home">--}}
+                            {{--<img src="public/img/icon-soict.png" class="img-responsive" alt="Image">--}}
+                        {{--</a>--}}
+                    {{--@elseif($type=='lecture')--}}
+                        {{--<a href="lecture-home">--}}
+                            {{--<img src="public/img/icon-soict.png" class="img-responsive" alt="Image">--}}
+                        {{--</a>--}}
+                    {{--@elseif($type=='company')--}}
+                        {{--<a href="company-home">--}}
+                            {{--<img src="public/img/icon-soict.png" class="img-responsive" alt="Image">--}}
+                        {{--</a>--}}
+                    {{--@else--}}
+                        {{--<a href="admin-home">--}}
+                            {{--<img src="{{ url('img/icon-soict.png') }}" class="img-responsive" alt="Image">--}}
+                        {{--</a>--}}
+                    {{--@endif--}}
                 </div>
                 <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 hidden-xs hidden-sm hidden-md" id="name-header">
                     @if($type=='student')
@@ -188,12 +190,10 @@
                 <div class="col-xs-3 col-sm-4 col-md-4 col-lg-3" style="margin-left: 30px">
                     <div class="row">
                     <span style="font-weight: normal;color:#FFFFFF;float: right">
-                        @foreach($user as $u)
-                            {{substr($u->name,0,30)}}
-                        @endforeach
-                        <a href="{{url('/')}}"
-                           style="color:#FFFFFF; float: right;font-weight: normal">[Đăng xuất]
-                        </a>
+                        @if (auth()->check())
+                            {{ substr(auth()->user()->admin->name, 0, 30) }}
+                            <a href="{{ url('logout') }}" style="color:#FFFFFF; float: right;font-weight: normal">[Đăng xuất]</a>
+                        @endif
                     </span>
                     </div>
                     <div class="row" style="font-weight: normal;float: right;color:#FFFFFF">
@@ -396,14 +396,14 @@
                             <h3 class="panel-title name-notify">Thông tin chung</h3>
                         </div>
                         <div class="panel-body" style="padding: 0px">
-                            @foreach($user as $u)
+                            @if (isset($user))
                                 <ul class="nav navbar-stacked user-menu">
                                     <li>
-                                        <a href="user-admin-home?user_id={{bcrypt($u->user_id)}}&type={{'admin'}}"
+                                        <a href="user-admin-home?user_id={{bcrypt($user->id)}}&type={{'admin'}}"
                                            id="menu-home">Thông báo</a>
                                     </li>
                                 </ul>
-                            @endforeach
+                            @endif
                         </div>
                     </div>
                     <div class="panel panel-default" style="margin-left: -15px;">

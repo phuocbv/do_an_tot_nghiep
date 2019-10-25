@@ -16,6 +16,7 @@ use App\LectureReport;
 use App\MyUser;
 use App\News;
 use App\PlanLearning;
+use App\Repositories\Contracts\InternShipCourseRepositoryInterface;
 use App\Student;
 use App\StudentInternShipCourse;
 use App\StudentReport;
@@ -25,6 +26,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
@@ -33,7 +35,9 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class ManageInCourseController extends Controller
 {
-    public function __construct()
+    private $internShipCourseRepository;
+
+    public function __construct(InternShipCourseRepositoryInterface $internShipCourseRepository)
     {
         $this->checkInsertPlan = true;
         $this->checkUpdateTime = true;
@@ -42,20 +46,12 @@ class ManageInCourseController extends Controller
         $this->checkRow = false;
         $this->arrTransition = array();
         $this->checkEditPlan = true;
+        $this->internShipCourseRepository = $internShipCourseRepository;
     }
 
 
     public function listCourse()
     {
-        /*
-        * get newNotify
-        * get uniNotify
-        * get comNotify
-        */
-        $notify = News::getNotify();
-
-        $adminSession = new  SessionController();
-        $admin = Admin::getAdmin($adminSession->getAdminSession());
         $type = 'admin';
 
         /*
@@ -70,23 +66,14 @@ class ManageInCourseController extends Controller
         return view('manage-internship-course.list-course')->with([
             'course' => $course,
             'currentYear' => $currentYear,
-            'notify' => $notify,
-            'user' => $admin,
+           // 'notify' => $notify,
+            'user' => Auth::user(),
             'type' => $type,
         ]);
     }
 
     public function planLearning()
     {
-        /*
-       * get newNotify
-       * get uniNotify
-       * get comNotify
-       */
-        $notify = News::getNotify();
-
-        $adminSession = new  SessionController();
-        $admin = Admin::getAdmin($adminSession->getAdminSession());
         $type = 'admin';
 
         /*
@@ -97,8 +84,8 @@ class ManageInCourseController extends Controller
         return view('manage-internship-course.plan-learning')->with([
             'planLearning' => $planLearning,
             'currentYear' => $currentYear,
-            'notify' => $notify,
-            'user' => $admin,
+            //'notify' => $notify,
+            //'user' => $admin,
             'type' => $type,
         ]);
     }
@@ -206,7 +193,7 @@ class ManageInCourseController extends Controller
             $year = (int)date('Y', strtotime($nowDate)) - 1;
         }
         /*
-         *danh sách giảng viên, danh sách sinh viên
+         *danh sách giảng viên, danh sách công ty
          */
         $allLecture = Lecture::allLecture();
         $allCompany = Company::allCompany();
@@ -293,7 +280,9 @@ class ManageInCourseController extends Controller
                     $startTerm = strtotime($pl->start_term3);
                 }
             }
+
             //complete process start_term
+            //thời gian hiện tại phải nhỏ hơn thời gian bắt đầu đi thực tập
             $nowDate = strtotime(date('Y-m-d'));
             if ($nowDate < $startTerm && InternShipCourse::checkCourse($getTerm)) {
                 $name = 'Kỳ thực tập ' . $getTerm;
@@ -335,7 +324,12 @@ class ManageInCourseController extends Controller
         }
     }
 
-
+    /**
+     * return course detail
+     * 
+     * @param Request $request
+     * @return $this
+     */
     public function courseDetail(Request $request)
     {
         /*
@@ -343,18 +337,14 @@ class ManageInCourseController extends Controller
        * get uniNotify
        * get comNotify
        */
-        $notify = News::getNotify();
-
-        $adminSession = new  SessionController();
-        $admin = Admin::getAdmin($adminSession->getAdminSession());
         $type = 'admin';
 
         $courseID = $request->input('id');
         /*
          * lay khoa thuc tap
          */
-        $course = InternShipCourse::getInCourse($courseID);
-
+        $course = InternShipCourse::find($courseID);
+        $internShipCourse = $this->internShipCourseRepository->showCourseDetail($courseID);
 
         /*
          * lay danh sach sinh vien tham gia khoa thuc tap
@@ -390,22 +380,19 @@ class ManageInCourseController extends Controller
             }
         }
 
-        $courseTerm = "";
-        foreach ($course as $c) {
-            $courseTerm = $c->course_term;
-        }
+
+        $courseTerm = $c->course_term;
 
         /*lay nhom da phan cong*/
 //        $arrAssign = InternShipGroup::getGroupFCourseID($courseID);
-        $arrAssign = InternShipGroup::getGroupAssigned($courseID);
-
-        /*lay danh sach sinh vien cho phan cong*/
+        $arrAssigns = InternShipGroup::getGroupAssigned($courseID);
+        /*lay danh sach sinh vien chua phan cong*/
         $arrStudentQue = StudentTmp::getStudentTmp($courseTerm, 0);
 
         /*lay danh sach sinh vien bi canh cao*/
         $arrStudentDanger = StudentTmp::getStudentTmp($courseTerm, -1);
 
-        return view('manage-internship-course.course-detail')->with([
+        return view('admin.manage-course.course-detail')->with([
             'arrCompany' => $arrCompany,
             'arrLecture' => $arrLecture,
             'studentInCourse' => $studentInCourse,
@@ -413,12 +400,11 @@ class ManageInCourseController extends Controller
             'lectureInCourse' => $lectureInCourse,
             'course' => $course,
             'courseID' => $courseID,
-            'arrAssign' => $arrAssign,
+            'arrAssign' => $arrAssigns,
             'arrStudentQue' => $arrStudentQue,
             'arrStudentDanger' => $arrStudentDanger,
-            'notify' => $notify,
-            'user' => $admin,
             'type' => $type,
+            'internShipCourse' => $internShipCourse,
         ]);
     }
 

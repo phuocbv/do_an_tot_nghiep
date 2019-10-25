@@ -10,22 +10,22 @@ class InternShipGroup extends Model
 
     public function student()
     {
-        return $this->belongsTo('Student', 'student_id');
+        return $this->belongsTo(Student::class, 'student_id');
     }
 
     public function lecture()
     {
-        return $this->belongsTo('Lecture', 'lecture_id');
+        return $this->belongsTo(Lecture::class, 'lecture_id');
     }
 
     public function company()
     {
-        return $this->belongsTo('Company', 'company_id');
+        return $this->belongsTo(Company::class, 'company_id');
     }
 
     public function interShipCourse()
     {
-        return $this->belongsTo('InternShipCourse', 'internship_course_id');
+        return $this->belongsTo(InternShipCourse::class, 'internship_course_id');
     }
 
     /**
@@ -242,6 +242,12 @@ class InternShipGroup extends Model
             ->get()
             ->groupBy('company_id');
         return $group;
+//        $group->each(function ($item, $key) {
+//            $item['studentInCourse'] = StudentInternShipCourse::getStudentInCourse($item->student_id, $item->student_id)->first();
+//        });
+//        dd($group);
+//            //;
+//        return $group;
     }
 
     /**

@@ -181,6 +181,8 @@ class StudentRegisterController extends Controller
          */
         $countStudent = InternShipGroup::countStudentInCompany($companyID, $internShipCourseID);
         if (!CompanyInternShipCourse::checkRegisterFull($countStudent, $studentQuantity)) {
+
+            //xem sinh viên đã đăng kí thực tập chưa
             $countCheck = count(InternShipGroup::getGroupFollowSI($studentID, $internShipCourseID));
             if ($countCheck > 0) {
                 $checkCompanyID1 = "";
@@ -190,6 +192,8 @@ class StudentRegisterController extends Controller
                     $checkCompanyID1 = $g->company_id;
                     $groupID = $g->id;
                 }
+
+                //kiểm tra xem công ty hiện tại và công ty đăng kí có trùng ko
                 if ($checkCompanyID1 == $companyID) {
                     return redirect()->back()->with('noChange', 'Bạn chưa thay đổi đăng ký');
                 } else {
@@ -200,6 +204,7 @@ class StudentRegisterController extends Controller
                     return redirect()->back()->with('change', 'Bạn đã thay đổi đăng ký');
                 }
             } else {
+                //trong trường hợp sinh viên chưa đăng kí thì đăng kí kì thực tập mới
                 StudentInternShipCourse::insertSIC($studentID, $internShipCourseID);
                 InternShipGroup::insertGroup($studentID, $internShipCourseID, $companyID);
                 if (CompanyVote::checkStudentCompany($studentID, $companyID)) {
@@ -208,6 +213,7 @@ class StudentRegisterController extends Controller
                 return redirect()->back()->with('registerSuccess', 'Bạn đã đăng ký thành công');
             }
         } else {
+            //trong trường hợp công ty đó bạn đã đăng kí hoặc hết chỗ
             $group = InternShipGroup::getGroupFollowSI($studentID, $internShipCourseID);
             $checkCompanyID2 = "";
             foreach ($group as $g) {

@@ -6,5 +6,7 @@
 </head>
 <body>
 test
+<input type="text" class="form-control form-text-custom" id="holidayShortName" name="holidayShortName">
+                <span class="error-validate" id="shortNameValidate"> This is tooltip</span>
 </body>
 </html>
